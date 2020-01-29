@@ -7,23 +7,33 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FloatingFreedom.Data;
 using FloatingFreedom.Models;
+using FloatingFreedom.Models.ViewModels;
+using Microsoft.AspNetCore.Identity;
 
 namespace FloatingFreedom.Controllers
 {
     public class KayaksController : Controller
     {
-        private readonly ApplicationDbContext _context;
+		private readonly UserManager<ApplicationUser> _userManager;
 
-        public KayaksController(ApplicationDbContext context)
+		private readonly ApplicationDbContext _context;
+
+
+        public KayaksController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
-        }
+			_userManager = userManager;
+		}
 
-        // GET: Kayaks
-        public async Task<IActionResult> Index()
+		private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
+
+		// GET: Kayaks
+		public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Kayaks.Include(k => k.KayakType).Include(k => k.KayakType).Include(k => k.User);
-            return View(await applicationDbContext.ToListAsync());
+			ApplicationUser loggedInUser = await GetCurrentUserAsync();
+
+			List<Kayak> kayaks = await _context.Kayaks.Include(kayaks => kayaks.KayakType).Include(k => k.User).Where(kayaks => kayaks.User == loggedInUser).ToListAsync();
+			return View(kayaks);
         }
 
         // GET: Kayaks/Details/5
@@ -49,9 +59,20 @@ namespace FloatingFreedom.Controllers
         // GET: Kayaks/Create
         public IActionResult Create()
         {
-            ViewData["KayakTypeId"] = new SelectList(_context.KayakTypes, "Id", "Id");
-			ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
-			return View();
+			KayakViewModel kvm = new KayakViewModel();
+			kvm.KayakTypes = _context.KayakTypes.Select(kt => new SelectListItem
+			{
+				Value = kt.Id.ToString(),
+				Text = kt.Name
+			}).ToList();
+
+			kvm.KayakTypes.Insert(0, new SelectListItem()
+			{
+				Value = "0",
+				Text = "Please Select a Kayak Type"
+			});
+
+			return View(kvm);
         }
 
         // POST: Kayaks/Create
@@ -59,35 +80,44 @@ namespace FloatingFreedom.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,KayakTypeId,UserId,Name")] Kayak kayak)
+        public async Task<IActionResult> Create(KayakViewModel kvm)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(kayak);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["KayakTypeId"] = new SelectList(_context.KayakTypes, "Id", "Id", kayak.KayakTypeId);
-			ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", kayak.UserId);
-			return View(kayak);
+			if (ModelState.IsValid)
+			{
+				var currentUser = await GetCurrentUserAsync();
+				kvm.Kayak.UserId = currentUser.Id;
+				_context.Add(kvm.Kayak);
+				await _context.SaveChangesAsync();
+				return RedirectToAction(nameof(Index));
+			}
+
+			kvm.KayakTypes = _context.KayakTypes.Select(kt => new SelectListItem 
+			{
+			Value = kt.Id.ToString(),
+			Text = kt.Name
+			}).ToList();
+
+			return View(kvm);
         }
 
-        // GET: Kayaks/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
+		// GET: Kayaks/Edit/5
+		public async Task<IActionResult> Edit(int? id)
+		{
+			KayakViewModel kvm = new KayakViewModel();
+			kvm.KayakTypes = _context.KayakTypes.Select(kt => new SelectListItem
+			{
+				Value = kt.Id.ToString(),
+				Text = kt.Name
+			}).ToList();
+
             if (id == null)
             {
                 return NotFound();
             }
 
-            var kayak = await _context.Kayaks.FindAsync(id);
-            if (kayak == null)
-            {
-                return NotFound();
-            }
-            ViewData["KayakTypeId"] = new SelectList(_context.KayakTypes, "Id", "Id", kayak.KayakTypeId);
-			ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", kayak.UserId);
-			return View(kayak);
+            kvm.Kayak = await _context.Kayaks.FindAsync(id);
+
+			return View(kvm);
         }
 
         // POST: Kayaks/Edit/5
@@ -95,7 +125,7 @@ namespace FloatingFreedom.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,KayakTypeId,UserId,Name")] Kayak kayak)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,KayakTypeId,Name")] Kayak kayak)
         {
             if (id != kayak.Id)
             {

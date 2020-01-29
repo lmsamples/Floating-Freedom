@@ -1,4 +1,4 @@
-﻿@model FloatingFreedom.Models.Kayak
+﻿@model FloatingFreedom.Models.ViewModels.KayakViewModel;
 
 @{
     ViewData["Title"] = "Edit";
@@ -12,21 +12,17 @@
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="Kayak.Id" />
             <div class="form-group">
-                <label asp-for="KayakTypeId" class="control-label"></label>
-                <select asp-for="KayakTypeId" class="form-control" asp-items="ViewBag.KayakTypeId"></select>
-                <span asp-validation-for="KayakTypeId" class="text-danger"></span>
+                <label asp-for="Kayak.KayakTypeId" class="control-label"></label>
+                <select asp-for="Kayak.KayakTypeId" class="form-control" asp-items="@Model.KayakTypes"></select>
+                <span asp-validation-for="Kayak.KayakTypeId" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="UserId" class="control-label"></label>
-                <input asp-for="UserId" class="form-control" />
-                <span asp-validation-for="UserId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+                <label asp-for="Kayak.Name" class="control-label"></label>
+                <input asp-for="Kayak.Name" class="form-control" />
+                <span asp-validation-for="Kayak.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
