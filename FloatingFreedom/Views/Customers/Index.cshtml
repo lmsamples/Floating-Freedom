@@ -31,7 +31,7 @@
                 @Html.DisplayNameFor(model => model.ReturnDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Kayak)
+                @Html.DisplayNameFor(model => model.KayakId)
             </th>
             <th></th>
         </tr>
@@ -40,7 +40,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.UserId)
+                @Html.DisplayFor(modelItem => item.User.Id)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
@@ -58,7 +58,7 @@
                 @Html.DisplayFor(modelItem => item.ReturnDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Kayak.Id)
+                @Html.DisplayFor(modelItem => item.Kayak.Name)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

@@ -11,6 +11,7 @@ namespace FloatingFreedom.Models
 		public int Id { get; set; }
 		[Display(Name = "User Name")]
 		public string UserId { get; set; }
+		[Display(Name = "Kayak Name")]
 		public int KayakId { get; set; }
 		[Display(Name = "Customer Name")]
 		public string Name { get; set; }
