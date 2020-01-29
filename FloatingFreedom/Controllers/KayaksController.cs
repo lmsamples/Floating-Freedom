@@ -136,8 +136,10 @@ namespace FloatingFreedom.Controllers
             {
                 try
                 {
-                    _context.Update(kayak);
-                    await _context.SaveChangesAsync();
+					var currentUser = await GetCurrentUserAsync();
+					kayak.UserId = currentUser.Id;
+					_context.Update(kayak);
+					await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -153,7 +155,6 @@ namespace FloatingFreedom.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["KayakTypeId"] = new SelectList(_context.KayakTypes, "Id", "Id", kayak.KayakTypeId);
-			ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", kayak.UserId);
 			return View(kayak);
         }
 

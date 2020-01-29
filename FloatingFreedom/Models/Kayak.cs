@@ -10,6 +10,7 @@ namespace FloatingFreedom.Models
 	{
 		public int Id { get; set; }
 		public int KayakTypeId { get; set; }
+		[Display(Name = "User Name")]
 		public string UserId { get; set; }
 		[Display(Name = "Kayak Name")]
 		public string Name { get; set; }

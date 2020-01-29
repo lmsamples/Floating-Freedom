@@ -9,8 +9,10 @@ namespace FloatingFreedom.Models
 	public class Customer
 	{
 		public int Id { get; set; }
+		[Display(Name = "User Name")]
 		public string UserId { get; set; }
 		public int KayakId { get; set; }
+		[Display(Name = "Customer Name")]
 		public string Name { get; set; }
 		[Display(Name = "Phone Number")]
 		public string PhoneNumber { get; set; }
