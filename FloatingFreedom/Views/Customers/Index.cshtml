@@ -1,65 +1,105 @@
 ﻿@model IEnumerable<FloatingFreedom.Models.Customer>
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 
 @{
-    ViewData["Title"] = "Index";
+	ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+@if (SignInManager.IsSignedIn(User))
+{
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PhoneNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RentalDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ReturnDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.KayakId)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PhoneNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RentalDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReturnDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Kayak.Name)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+	<h1>Index</h1>
+
+	<p>
+		<a asp-action="Create">Create New</a>
+	</p>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>
+					@Html.DisplayNameFor(model => model.Name)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.PhoneNumber)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Email)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.RentalDate)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.ReturnDate)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.KayakId)
+				</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var item in Model)
+			{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.Name)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.PhoneNumber)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Email)
+				</td>
+
+
+				@if (item.RentalDate <= DateTime.Now)
+				{
+					<td>
+						@Html.DisplayFor(modelItem => item.RentalDate)
+					</td>
+				}
+				else
+				{
+					<td class="bg-primary text-white">
+						@Html.DisplayFor(modelItem => item.RentalDate)
+					</td>
+				}
+
+
+				@if (item.ReturnDate >= DateTime.Now)
+				{
+				<td>
+					@Html.DisplayFor(modelItem => item.ReturnDate)
+				</td>
+				}
+				else
+				{
+				<td class="bg-danger text-white">
+					@Html.DisplayFor(modelItem => item.ReturnDate)
+				</td>
+				}
+
+
+				<td>
+					@Html.DisplayFor(modelItem => item.Kayak.Name)
+				</td>
+				<td>
+					<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+					<a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+					<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+				</td>
+			</tr>
+			}
+		</tbody>
+	</table>
+
 }
-    </tbody>
-</table>
+else
+{
+<p>Please <a asp-area="Identity" asp-page="/Account/Login">Log in</a> to access this page.</p>
+}
+@section Scripts {
+	@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

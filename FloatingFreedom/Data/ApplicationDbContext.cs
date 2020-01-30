@@ -27,7 +27,8 @@ namespace FloatingFreedom.Data
 			ApplicationUser user = new ApplicationUser
 			{
 				Id = "00000000-ffff-ffff-ffff-ffffffffffff",
-				Name = "admin",
+				Name = "Admin Store",
+				PhoneNumber = "304-123-1234",
 				Address = "123 Infinity Way",
 				UserName = "admin@admin.com",
 				NormalizedUserName = "ADMIN@ADMIN.COM",
@@ -85,183 +86,183 @@ namespace FloatingFreedom.Data
 
 				new Kayak()
 				{
-					Id = 29,
+					Id = 1,
 					KayakTypeId = 1,
-					UserId = user.Id,
+					UserId = "00000000-ffff-ffff-ffff-ffffffffffff",
 					Name = "Sun Dolphin Destin #01",
 				},
 				new Kayak()
 				{
-					Id = 30,
+					Id = 2,
 					KayakTypeId = 1,
-					UserId = user.Id,
+					UserId = "00000000-ffff-ffff-ffff-ffffffffffff",
 					Name = "Sun Dolphin Destin #02",
 				},
 				new Kayak()
 				{
-					Id = 31,
+					Id = 3,
 					KayakTypeId = 1,
-					UserId = user.Id,
+					UserId = "00000000-ffff-ffff-ffff-ffffffffffff",
 					Name = "Sun Dolphin Destin #03",
 				},
 				new Kayak()
 				{
-					Id = 32,
+					Id = 4,
 					KayakTypeId = 1,
-					UserId = user.Id,
+					UserId = "00000000-ffff-ffff-ffff-ffffffffffff",
 					Name = "Sun Dolphin Destin #04",
 				},
 				new Kayak()
 				{
-					Id = 33,
+					Id = 5,
 					KayakTypeId = 1,
-					UserId = user.Id,
+					UserId = "00000000-ffff-ffff-ffff-ffffffffffff",
 					Name = "Sun Dolphin Destin #05",
 				},
 
 
 				new Kayak()
 				{
-					Id = 34,
+					Id = 6,
 					KayakTypeId = 2,
-					UserId = user.Id,
+					UserId = "00000000-ffff-ffff-ffff-ffffffffffff",
 					Name = "Sun Dolphin Phoenix #01",
 				},
 				new Kayak()
 				{
-					Id = 35,
+					Id = 7,
 					KayakTypeId = 2,
-					UserId = user.Id,
+					UserId = "00000000-ffff-ffff-ffff-ffffffffffff",
 					Name = "Sun Dolphin Phoenix #02",
 				},
 				new Kayak()
 				{
-					Id = 36,
+					Id = 8,
 					KayakTypeId = 2,
-					UserId = user.Id,
+					UserId = "00000000-ffff-ffff-ffff-ffffffffffff",
 					Name = "Sun Dolphin Phoenix #03",
 				},
 				new Kayak()
 				{
-					Id = 37,
+					Id = 9,
 					KayakTypeId = 2,
-					UserId = user.Id,
+					UserId = "00000000-ffff-ffff-ffff-ffffffffffff",
 					Name = "Sun Dolphin Phoenix #04",
 				},
 				new Kayak()
 				{
-					Id = 38,
+					Id = 10,
 					KayakTypeId = 2,
-					UserId = user.Id,
+					UserId = "00000000-ffff-ffff-ffff-ffffffffffff",
 					Name = "Sun Dolphin Phoenix #05",
 				},
 
 
 				new Kayak()
 				{
-					Id = 39,
+					Id = 11,
 					KayakTypeId = 3,
-					UserId = user.Id,
+					UserId = "00000000-ffff-ffff-ffff-ffffffffffff",
 					Name = "Sun Dolphin Aruba #01",
 				},
 				new Kayak()
 				{
-					Id = 40,
+					Id = 12,
 					KayakTypeId = 3,
-					UserId = user.Id,
+					UserId = "00000000-ffff-ffff-ffff-ffffffffffff",
 					Name = "Sun Dolphin Aruba #02",
 				},
 				new Kayak()
 				{
-					Id = 41,
+					Id = 13,
 					KayakTypeId = 3,
-					UserId = user.Id,
+					UserId = "00000000-ffff-ffff-ffff-ffffffffffff",
 					Name = "Sun Dolphin Aruba #03",
 				},
 				new Kayak()
 				{
-					Id = 42,
+					Id = 14,
 					KayakTypeId = 3,
-					UserId = user.Id,
+					UserId = "00000000-ffff-ffff-ffff-ffffffffffff",
 					Name = "Sun Dolphin Aruba #04",
 				},
 				new Kayak()
 				{
-					Id = 43,
+					Id = 15,
 					KayakTypeId = 3,
-					UserId = user.Id,
+					UserId = "00000000-ffff-ffff-ffff-ffffffffffff",
 					Name = "Sun Dolphin Aruba #05",
 				},
 
 
 				new Kayak()
 				{
-					Id = 44,
+					Id = 16,
 					KayakTypeId = 4,
-					UserId = user.Id,
+					UserId = "00000000-ffff-ffff-ffff-ffffffffffff",
 					Name = "Intex Explorer K2 #01",
 				},
 				new Kayak()
 				{
-					Id = 45,
+					Id = 17,
 					KayakTypeId = 4,
-					UserId = user.Id,
+					UserId = "00000000-ffff-ffff-ffff-ffffffffffff",
 					Name = "Intex Explorer K2 #02",
 				},
 				new Kayak()
 				{
-					Id = 46,
+					Id = 18,
 					KayakTypeId = 4,
-					UserId = user.Id,
+					UserId = "00000000-ffff-ffff-ffff-ffffffffffff",
 					Name = "Intex Explorer K2 #03",
 				},
 				new Kayak()
 				{
-					Id = 47,
+					Id = 19,
 					KayakTypeId = 4,
-					UserId = user.Id,
+					UserId = "00000000-ffff-ffff-ffff-ffffffffffff",
 					Name = "Intex Explorer K2 #04",
 				},
 				new Kayak()
 				{
 					Id = 20,
 					KayakTypeId = 4,
-					UserId = user.Id,
+					UserId = "00000000-ffff-ffff-ffff-ffffffffffff",
 					Name = "Intex Explorer K2 #05",
 				},
 				new Kayak()
 				{
 					Id = 21,
 					KayakTypeId = 4,
-					UserId = user.Id,
+					UserId = "00000000-ffff-ffff-ffff-ffffffffffff",
 					Name = "Intex Explorer K2 #06",
 				},
 				new Kayak()
 				{
 					Id = 22,
 					KayakTypeId = 4,
-					UserId = user.Id,
+					UserId = "00000000-ffff-ffff-ffff-ffffffffffff",
 					Name = "Intex Explorer K2 #07",
 				},
 				new Kayak()
 				{
 					Id = 23,
 					KayakTypeId = 4,
-					UserId = user.Id,
+					UserId = "00000000-ffff-ffff-ffff-ffffffffffff",
 					Name = "Intex Explorer K2 #08",
 				},
 				new Kayak()
 				{
 					Id = 24,
 					KayakTypeId = 4,
-					UserId = user.Id,
+					UserId = "00000000-ffff-ffff-ffff-ffffffffffff",
 					Name = "Intex Explorer K2 #09",
 				},
 				new Kayak()
 				{
 					Id = 25,
 					KayakTypeId = 4,
-					UserId = user.Id,
+					UserId = "00000000-ffff-ffff-ffff-ffffffffffff",
 					Name = "Intex Explorer K2 #10",
 				},
 
@@ -270,21 +271,21 @@ namespace FloatingFreedom.Data
 				{
 					Id = 26,
 					KayakTypeId = 5,
-					UserId = user.Id,
+					UserId = "00000000-ffff-ffff-ffff-ffffffffffff",
 					Name = "BKC PK12 #01",
 				},
 				new Kayak()
 				{
 					Id = 27,
 					KayakTypeId = 5,
-					UserId = user.Id,
+					UserId = "00000000-ffff-ffff-ffff-ffffffffffff",
 					Name = "BKC PK12 #02",
 				},
 				new Kayak()
 				{
 					Id = 28,
 					KayakTypeId = 5,
-					UserId = user.Id,
+					UserId = "00000000-ffff-ffff-ffff-ffffffffffff",
 					Name = "BKC PK12 #03",
 				}
 
@@ -292,8 +293,8 @@ namespace FloatingFreedom.Data
 			modelBuilder.Entity<Customer>().HasData(
 			new Customer()
 			{
-				Id = 10,
-				UserId = user.Id,
+				Id = 1,
+				UserId = "00000000-ffff-ffff-ffff-ffffffffffff",
 				KayakId = 1,
 				Name = "John Doe",
 				PhoneNumber = "304-123-1234",
@@ -303,8 +304,8 @@ namespace FloatingFreedom.Data
 			},
 			new Customer()
 			{
-				Id = 11,
-				UserId = user.Id,
+				Id = 2,
+				UserId = "00000000-ffff-ffff-ffff-ffffffffffff",
 				KayakId = 18,
 				Name = "Anne Example",
 				PhoneNumber = "304-321-1111",
