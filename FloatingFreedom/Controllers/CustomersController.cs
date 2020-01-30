@@ -57,7 +57,10 @@ namespace FloatingFreedom.Controllers
         public IActionResult Create()
         {
 			CreateCustomerViewModel vm = new CreateCustomerViewModel();
-			vm.Kayaks = _context.Kayaks.Select(c => new SelectListItem
+			vm.Kayaks = _context.Kayaks
+				.Include(c => c.customers)
+				.Where(c => c.customers.Any(d => d.ReturnDate <= DateTime.Now) || c.customers.Count == 0)
+				.Select(c => new SelectListItem
 			{
 				Value = c.Id.ToString(),
 				Text = c.Name

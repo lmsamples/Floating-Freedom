@@ -16,6 +16,7 @@ namespace FloatingFreedom.Models
 		public string Name { get; set; }
 		[Display(Name = "Kayak Type")]
 		public KayakType KayakType { get; set; }
+		public List<Customer> customers { get; set; } = new List<Customer>();
 		public ApplicationUser User { get; set; }
 	}
 }
