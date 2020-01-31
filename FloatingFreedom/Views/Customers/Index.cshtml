@@ -10,10 +10,14 @@
 @if (SignInManager.IsSignedIn(User))
 {
 
-	<h1>Index</h1>
-
+	<h1>Customers</h1>
+	<ul>
+		<li class="text-primary">Blue dates are upcoming rentals.</li>
+		<li class="text-danger">Red dates are late returns.</li>
+	</ul>
+	
 	<p>
-		<a asp-action="Create">Create New</a>
+		<a asp-action="Create" class="btn btn-success">Create New</a>
 	</p>
 	<table class="table">
 		<thead>
@@ -86,8 +90,8 @@
 					@Html.DisplayFor(modelItem => item.Kayak.Name)
 				</td>
 				<td>
-					<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-					<a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+					<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> 
+					<a asp-action="Details" asp-route-id="@item.Id">Details</a> 
 					<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
 				</td>
 			</tr>

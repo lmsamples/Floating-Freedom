@@ -27,11 +27,11 @@ namespace FloatingFreedom.Data
 			ApplicationUser user = new ApplicationUser
 			{
 				Id = "00000000-ffff-ffff-ffff-ffffffffffff",
-				Name = "Admin Store",
+				Name = "Amin the Admin",
 				PhoneNumber = "304-123-1234",
 				Address = "123 Infinity Way",
-				UserName = "admin@admin.com",
-				NormalizedUserName = "ADMIN@ADMIN.COM",
+				UserName = "admin",
+				NormalizedUserName = "ADMIN",
 				Email = "admin@admin.com",
 				NormalizedEmail = "ADMIN@ADMIN.COM",
 				EmailConfirmed = true,

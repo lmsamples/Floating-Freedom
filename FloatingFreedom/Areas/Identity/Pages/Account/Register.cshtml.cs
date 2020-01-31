@@ -46,9 +46,11 @@ namespace FloatingFreedom.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-			
 			[Required]
-			[Display(Name = "Store Name")]
+			[Display(Name = "User Name")]
+			public string UserName { get; set; }
+			[Required]
+			[Display(Name = "Full Name")]
 			public string Name { get; set; }
 
 			[Required]
@@ -88,7 +90,7 @@ namespace FloatingFreedom.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser {
-					UserName = Input.Email,
+					UserName = Input.UserName,
 					Name = Input.Name,
 					Address = Input.Address,
 					Email = Input.Email,

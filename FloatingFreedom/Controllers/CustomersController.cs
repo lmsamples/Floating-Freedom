@@ -54,12 +54,16 @@ namespace FloatingFreedom.Controllers
         }
 
         // GET: Customers/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+
+			ApplicationUser loggedInUser = await GetCurrentUserAsync();
+
 			CreateCustomerViewModel vm = new CreateCustomerViewModel();
 			vm.Kayaks = _context.Kayaks
 				.Include(c => c.customers)
 				.Where(c => c.customers.Any(d => d.ReturnDate <= DateTime.Now) || c.customers.Count == 0)
+				.Where(c => c.User == loggedInUser)
 				.Select(c => new SelectListItem
 			{
 				Value = c.Id.ToString(),
