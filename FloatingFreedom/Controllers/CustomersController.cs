@@ -54,10 +54,17 @@ namespace FloatingFreedom.Controllers
         }
 
         // GET: Customers/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+
+			ApplicationUser loggedInUser = await GetCurrentUserAsync();
+
 			CreateCustomerViewModel vm = new CreateCustomerViewModel();
-			vm.Kayaks = _context.Kayaks.Select(c => new SelectListItem
+			vm.Kayaks = _context.Kayaks
+				.Include(c => c.customers)
+				.Where(c => c.customers.Any(d => d.ReturnDate <= DateTime.Now) || c.customers.Count == 0)
+				.Where(c => c.User == loggedInUser)
+				.Select(c => new SelectListItem
 			{
 				Value = c.Id.ToString(),
 				Text = c.Name
@@ -82,7 +89,7 @@ namespace FloatingFreedom.Controllers
 
 		public async Task<IActionResult> Create(CreateCustomerViewModel vm)
         {
-			if (ModelState.IsValid)
+			if (ModelState.IsValid && vm.Customer.KayakId != 0)
 			{
 				var currentUser = await GetCurrentUserAsync();
 				vm.Customer.UserId = currentUser.Id;
@@ -95,6 +102,12 @@ namespace FloatingFreedom.Controllers
 				Value = c.Id.ToString(),
 				Text = c.Name
 			}).ToList();
+
+			vm.Kayaks.Insert(0, new SelectListItem()
+			{
+				Value = "0",
+				Text = "Please Choose A Kayak"
+			});
 
 			return View(vm);
 		}
