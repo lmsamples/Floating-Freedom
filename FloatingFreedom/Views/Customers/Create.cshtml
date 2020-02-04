@@ -13,10 +13,11 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <div class="form-group">
-                <label asp-for="Customer.KayakId" class="control-label"></label>
-                <select asp-for="Customer.KayakId" class ="form-control" asp-items="@Model.Kayaks"></select>
-            </div>
+			<div class="form-group" id="KayakLabel">
+				<label asp-for="Customer.KayakId" class="control-label"></label>
+				<select asp-for="Customer.KayakId" class="form-control" id="KayakList" asp-items="@Model.Kayaks"></select>
+				<span asp-validation-for="Customer.KayakId" class="text-danger"></span>
+			</div>
             <div class="form-group">
                 <label asp-for="Customer.Name" class="control-label"></label>
                 <input asp-for="Customer.Name" class="form-control" />
@@ -44,7 +45,7 @@
                 <span asp-validation-for="Customer.ReturnDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" id="CustomerCreate" class="btn btn-primary" />
             </div>
         </form>
     </div>

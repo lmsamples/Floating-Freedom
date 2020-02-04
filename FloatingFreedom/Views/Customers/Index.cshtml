@@ -40,7 +40,7 @@
 				<th>
 					@Html.DisplayNameFor(model => model.KayakId)
 				</th>
-				<th></th>
+				<th class="w-25">Actions</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -90,9 +90,9 @@
 					@Html.DisplayFor(modelItem => item.Kayak.Name)
 				</td>
 				<td>
-					<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> 
-					<a asp-action="Details" asp-route-id="@item.Id">Details</a> 
-					<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+					<a asp-action="Edit" class="btn btn-warning p-1" asp-route-id="@item.Id">Edit</a>
+					<a asp-action="Details" class="btn btn-secondary p-1" asp-route-id="@item.Id">Details</a>
+					<a asp-action="Delete" class="btn btn-danger p-1" asp-route-id="@item.Id" >Delete</a>
 				</td>
 			</tr>
 			}

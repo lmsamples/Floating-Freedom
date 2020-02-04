@@ -89,7 +89,7 @@ namespace FloatingFreedom.Controllers
 
 		public async Task<IActionResult> Create(CreateCustomerViewModel vm)
         {
-			if (ModelState.IsValid)
+			if (ModelState.IsValid && vm.Customer.KayakId != 0)
 			{
 				var currentUser = await GetCurrentUserAsync();
 				vm.Customer.UserId = currentUser.Id;
@@ -102,6 +102,12 @@ namespace FloatingFreedom.Controllers
 				Value = c.Id.ToString(),
 				Text = c.Name
 			}).ToList();
+
+			vm.Kayaks.Insert(0, new SelectListItem()
+			{
+				Value = "0",
+				Text = "Please Choose A Kayak"
+			});
 
 			return View(vm);
 		}

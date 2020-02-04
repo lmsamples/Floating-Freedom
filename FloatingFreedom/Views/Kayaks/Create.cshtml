@@ -12,9 +12,10 @@
     <div class="col-md-4">
 		<form asp-action="Create">
 			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-			<div class="form-group">
+			<div class="form-group" id="KayakTypeLabel">
 				<label asp-for="Kayak.KayakTypeId" class="control-label"></label>
-				<select asp-for="Kayak.KayakTypeId" class="form-control" asp-items="@Model.KayakTypes"></select>
+				<select asp-for="Kayak.KayakTypeId" id="KayakTypeList" class="form-control" asp-items="@Model.KayakTypes"></select>
+				<span asp-validation-for="Kayak.KayakTypeId" class="text-danger"></span>
 			</div>
 
 			<div class="form-group">
@@ -23,7 +24,7 @@
 				<span asp-validation-for="Kayak.Name" class="text-danger"></span>
 			</div>
 			<div class="form-group">
-				<input type="submit" value="Create" class="btn btn-primary" />
+				<input type="submit" value="Create" id="KayakCreate" class="btn btn-primary" />
 			</div>
 		</form>
     </div>

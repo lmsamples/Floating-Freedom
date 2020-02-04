@@ -82,7 +82,7 @@ namespace FloatingFreedom.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(KayakViewModel kvm)
         {
-			if (ModelState.IsValid)
+			if (ModelState.IsValid && kvm.Kayak.KayakTypeId != 0)
 			{
 				var currentUser = await GetCurrentUserAsync();
 				kvm.Kayak.UserId = currentUser.Id;
@@ -96,6 +96,12 @@ namespace FloatingFreedom.Controllers
 			Value = kt.Id.ToString(),
 			Text = kt.Name
 			}).ToList();
+
+			kvm.KayakTypes.Insert(0, new SelectListItem()
+			{
+				Value = "0",
+				Text = "Please Select a Kayak Type"
+			});
 
 			return View(kvm);
         }
